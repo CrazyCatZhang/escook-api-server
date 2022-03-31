@@ -1,0 +1,24 @@
+{
+  "name": "escook-api-server",
+  "version": "1.0.0",
+  "description": "Based on Node, an interface for escook background management projects:pushpin:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrazyCatZhang/escook-api-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrazyCatZhang/escook-api-server/issues"
+  },
+  "homepage": "https://github.com/CrazyCatZhang/escook-api-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
