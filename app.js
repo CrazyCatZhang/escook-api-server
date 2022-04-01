@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: false}));
 
 //注册路由模块
 const userRouter = require('./router/user');
-app.user('/api', userRouter);
+app.use('/api', userRouter);
 
 app.listen(3007, () => {
     console.log('api server listening on http://localhost:3007');

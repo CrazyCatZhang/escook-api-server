@@ -7,7 +7,7 @@ router.post('/register', function (req, res) {
 });
 
 //登录
-router.get('/login', function (req, res) {
+router.post('/login', function (req, res) {
     res.send('login OK');
 });
 
