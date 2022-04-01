@@ -8,6 +8,19 @@ app.use(cors());
 //配置解析表单数据的中间件
 app.use(express.urlencoded({extended: false}));
 
+//封装自定义错误中间件
+app.use(function (req, res, next) {
+    res.cc = function (err, status = 1) {
+        res.send({
+            // 状态
+            status,
+            // 状态描述，判断 err 是 错误对象 还是 字符串
+            message: err instanceof Error ? err.message : err,
+        });
+    };
+    next();
+});
+
 //注册路由模块
 const userRouter = require('./router/user');
 app.use('/api', userRouter);
