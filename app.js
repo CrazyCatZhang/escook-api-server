@@ -8,6 +8,10 @@ app.use(cors());
 //配置解析表单数据的中间件
 app.use(express.urlencoded({extended: false}));
 
+//注册路由模块
+const userRouter = require('./router/user');
+app.user('/api', userRouter);
+
 app.listen(3007, () => {
     console.log('api server listening on http://localhost:3007');
 });
