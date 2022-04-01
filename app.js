@@ -27,9 +27,13 @@ const expressJWT = require('express-jwt');
 const config = require('./config');
 app.use(expressJWT({secret: config.jwtSecretKey, algorithms: ['HS256']}).unless({path: [/^\/api\//]}));
 
-//注册路由模块
+//注册用户登录注册路由模块
 const userRouter = require('./router/user');
 app.use('/api', userRouter);
+
+//注册个人信息路由模块
+const userInfoRouter = require('./router/userinfo');
+app.use('/my', userInfoRouter);
 
 //定义错误级别的中间件
 app.use((err, req, res, next) => {
