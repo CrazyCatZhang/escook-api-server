@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const joi = require('joi');
 
 //导入并配置cors中间件
 const cors = require('cors');
@@ -24,6 +25,12 @@ app.use(function (req, res, next) {
 //注册路由模块
 const userRouter = require('./router/user');
 app.use('/api', userRouter);
+
+//定义错误级别的中间件
+app.use((err, req, res, next) => {
+    if (err instanceof joi.ValidationError) return res.cc(err);
+    res.cc(err);
+});
 
 app.listen(3007, () => {
     console.log('api server listening on http://localhost:3007');
