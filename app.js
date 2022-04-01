@@ -22,13 +22,21 @@ app.use(function (req, res, next) {
     next();
 });
 
+//在路由之前配置解析Token的中间件
+const expressJWT = require('express-jwt');
+const config = require('./config');
+app.use(expressJWT({secret: config.jwtSecretKey, algorithms: ['HS256']}).unless({path: [/^\/api\//]}));
+
 //注册路由模块
 const userRouter = require('./router/user');
 app.use('/api', userRouter);
 
 //定义错误级别的中间件
 app.use((err, req, res, next) => {
+    //验证合法性失败
     if (err instanceof joi.ValidationError) return res.cc(err);
+    //身份认证失败
+    if (err.name === 'UnauthorizedError') return res.cc('身份认证失败');
     res.cc(err);
 });
 
