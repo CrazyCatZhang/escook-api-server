@@ -8,12 +8,12 @@ const bcrypt = require('bcryptjs');
 exports.register = function (req, res) {
     const userinfo = req.body;
     // console.log(userinfo.username);
-    if (!userinfo.username || !userinfo.password) {
-        return res.send({
-            status: 1,
-            message: 'Invalid username or password'
-        });
-    }
+    // if (!userinfo.username || !userinfo.password) {
+    //     return res.send({
+    //         status: 1,
+    //         message: 'Invalid username or password'
+    //     });
+    // }
     const sqlStr = `select * from ev_users where username=?`;
     db.query(sqlStr, [userinfo.username], function (err, results) {
         // 执行 SQL 语句失败
