@@ -9,6 +9,9 @@ app.use(cors());
 //配置解析表单数据的中间件
 app.use(express.urlencoded({extended: false}));
 
+// 托管静态资源文件
+app.use('/uploads', express.static('./uploads'));
+
 //封装自定义错误中间件
 app.use(function (req, res, next) {
     res.cc = function (err, status = 1) {
@@ -38,6 +41,10 @@ app.use('/my', userInfoRouter);
 //注册文章分类信息模块
 const articleCateRouter = require('./router/articlecate');
 app.use('/my/article', articleCateRouter);
+
+//注册文章路由模块
+const articleRouter = require('./router/article');
+app.use('/my/article', articleRouter);
 
 //定义错误级别的中间件
 app.use((err, req, res, next) => {
