@@ -35,6 +35,10 @@ app.use('/api', userRouter);
 const userInfoRouter = require('./router/userinfo');
 app.use('/my', userInfoRouter);
 
+//注册文章分类信息模块
+const articleCateRouter = require('./router/articlecate');
+app.use('/my/article', articleCateRouter);
+
 //定义错误级别的中间件
 app.use((err, req, res, next) => {
     //验证合法性失败
